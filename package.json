@@ -1,6 +1,6 @@
 {
   "name": "expressjs-redis-cache-v1",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A module to make Express interact with Redis (create, get, delete). You can automatically cache all your most popular routes in Redis.",
   "main": "index.js",
   "bin": {
