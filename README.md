@@ -1,18 +1,18 @@
-expressjs-redis-cache
+expressjs-redis-cache-v1
 ===
 
-[![Build Status](https://travis-ci.org/ElectronSz/expressjs-redis-cache.svg?branch=master)](https://travis-ci.org/rv-kip/expressjs-redis-cache)
-[![dependencies Status](https://david-dm.org/ElectronSz/expressjs-redis-cache/status.svg)](https://david-dm.org/ElectronSz/expressjs-redis-cache)
+[![Build Status](https://travis-ci.org/ElectronSz/expressjs-redis-cache-v1.svg?branch=master)](https://travis-ci.org/rv-kip/expressjs-redis-cache-v1)
+[![dependencies Status](https://david-dm.org/ElectronSz/expressjs-redis-cache-v1/status.svg)](https://david-dm.org/ElectronSz/expressjs-redis-cache-v1)
 
 Easily cache pages of your app using Express and Redis. *Could be used without Express too.*
 
 # Install
 
-    npm install expressjs-redis-cache
+    npm install expressjs-redis-cache-v1
 
-`expressjs-redis-cache` ships with a CLI utility you can invoke from the console. In order to use it, install `expressjs-redis-cache` globally (might require super user privileges):
+`expressjs-redis-cache-v1` ships with a CLI utility you can invoke from the console. In order to use it, install `expressjs-redis-cache-v1` globally (might require super user privileges):
 
-    npm install -g expressjs-redis-cache
+    npm install -g expressjs-redis-cache-v1
 
 # Upgrade
 
@@ -24,7 +24,7 @@ Just use it as a middleware in the stack of the route you want to cache.
 
 ```js
 var app = express();
-var cache = require('expressjs-redis-cache')();
+var cache = require('expressjs-redis-cache-v1')();
 
 // replace
 app.get('/',
@@ -40,10 +40,10 @@ This will check if there is a cache entry for this route. If not. it will cache 
 
 # Redis connection info
 
-By default, `redis-express-cache` connects to Redis using localhost as host and nothing as port (using Redis default port 6379). To use different port or host, declare them when you require expressjs-redis-cache. If your Redis server requires password, use the `auth_pass` option.
+By default, `redis-express-cache` connects to Redis using localhost as host and nothing as port (using Redis default port 6379). To use different port or host, declare them when you require expressjs-redis-cache-v1. If your Redis server requires password, use the `auth_pass` option.
 
 ```js
-var cache = require('expressjs-redis-cache')({
+var cache = require('expressjs-redis-cache-v1')({
   host: String, port: Number, auth_pass: REDIS_PASSWORD
   });
 ```
@@ -51,19 +51,19 @@ var cache = require('expressjs-redis-cache')({
 You can pass a Redis client as well:
 
 ```js
-require('expressjs-redis-cache')({ client: require('redis').createClient() })
+require('expressjs-redis-cache-v1')({ client: require('redis').createClient() })
 ```
 
 You can have several clients if you want to serve from more than one Redis server:
 
 ```js
-var cache = require('expressjs-redis-cache');
+var cache = require('expressjs-redis-cache-v1');
 var client1 = cache({ host: "...", port: "..." });
 var client2 = cache({ host: "...", port: "..." });
 ...
 ```
 ## Redis Unavailability
-Should the redis become unavailable, the `expressjs-redis-cache` object will emit errors but will not crash the app. Express.js requests during this time will be bypass cache and will return fresh data.
+Should the redis become unavailable, the `expressjs-redis-cache-v1` object will emit errors but will not crash the app. Express.js requests during this time will be bypass cache and will return fresh data.
 
 Once the redis recovers, the caching will begin working again. See example code in the `/example` folder.
 
@@ -150,7 +150,7 @@ All entry names are prepended by a prefix. Prefix is set when calling the Constr
 
 ```js
 // Set default prefix to "test". All entry names will begin by "test:"
-var cache = require('expressjs-redis-cache')({ prefix: 'test' });
+var cache = require('expressjs-redis-cache-v1')({ prefix: 'test' });
 ```
 
 To know the prefix:
@@ -181,7 +181,7 @@ Unless specified otherwise when calling the Constructor, cache entries don't exp
 
 ```js
 // Set default lifetime to 60 seconds for all entries
-var cache = require('expressjs-redis-cache')({ expire: 60 });
+var cache = require('expressjs-redis-cache-v1')({ expire: 60 });
 ```
 
 You can overwrite the default lifetime when calling `route()`:
@@ -219,7 +219,7 @@ You can also specify
 
 # Content Type
 
-You can use `expressjs-redis-cache` to cache HTML pages, CSS stylesheets, JSON objects, anything really. Content-types are saved along the cache body and are retrieved using `res._headers['content-type']`. If you want to overwrite that, you can pass a custom type.
+You can use `expressjs-redis-cache-v1` to cache HTML pages, CSS stylesheets, JSON objects, anything really. Content-types are saved along the cache body and are retrieved using `res._headers['content-type']`. If you want to overwrite that, you can pass a custom type.
 
 ```js
 app.get('/index.html',
@@ -243,7 +243,7 @@ cache.on('error', function (error) {
 
 ## message
 
-`expressjs-redis-cache` logs some information at runtime. You can access it like this:
+`expressjs-redis-cache-v1` logs some information at runtime. You can access it like this:
 
 ```js
 cache.on('message', function (message) {
@@ -308,9 +308,9 @@ The module exposes a function which instantiates a new instance of a class calle
 
 ```js
 // This
-var cache = require('expressjs-redis-cache')({ /* ... */ });
+var cache = require('expressjs-redis-cache-v1')({ /* ... */ });
 // is the same than
-var cache = new (require('expressjs-redis-cache/lib/ExpressRedisCache'))({ /* ... */ });
+var cache = new (require('expressjs-redis-cache-v1/lib/ExpressRedisCache'))({ /* ... */ });
 ```
 
 # The constructor
@@ -318,7 +318,7 @@ var cache = new (require('expressjs-redis-cache/lib/ExpressRedisCache'))({ /* ..
 As stated above, call the function exposed by the module to create a new instance of `ExpressRedisCache`,
 
 ```js
-var cache = require('expressjs-redis-cache')(/** Object | Undefined */ options);
+var cache = require('expressjs-redis-cache-v1')(/** Object | Undefined */ options);
 ```
 
 Where `options` is an object that has the following properties:
@@ -327,7 +327,7 @@ Where `options` is an object that has the following properties:
 | ------------- |----------|-------|----------|--------|
 | **host**          | `String`    | `undefined` | Redis server host
 | **port**      | `Number`     | `undefined` | Redis server port
-| **prefix**       | `String`  | `require('expressjs-redis-cache/package.json').config.prefix` | Default prefix (This will be prepended to all entry names) |
+| **prefix**       | `String`  | `require('expressjs-redis-cache-v1/package.json').config.prefix` | Default prefix (This will be prepended to all entry names) |
 | **expire**   | `Number` | `undefined` | Default life time of entries in seconds |
 | **client**   | `RedisClient` | `require('redis').createClient({ host: cache.host, port: cache.port })` | A Redis client |
 
@@ -403,56 +403,56 @@ cache.size(/** Function ( Error, Number bytes ) */);
 
 # Command line
 
-We ship with a CLI. You can invoke it like this: `expressjs-redis-cache`
+We ship with a CLI. You can invoke it like this: `expressjs-redis-cache-v1`
 
 ## View cache entries
 
 ```bash
-expressjs-redis-cache ls
+expressjs-redis-cache-v1 ls
 ```
 
 ## Add cache entry
 
 ```bash
-expressjs-redis-cache add $name $body $expire --type $type
+expressjs-redis-cache-v1 add $name $body $expire --type $type
 ```
 
 ### Examples
 
 ```bash
 # Cache simple text
-expressjs-redis-cache add "test" "This is a test";
+expressjs-redis-cache-v1 add "test" "This is a test";
 
 # Cache a file
-expressjs-redis-cache add "home" "$(cat index.html)";
+expressjs-redis-cache-v1 add "home" "$(cat index.html)";
 
 # Cache a JSON object
-expressjs-redis-cache add "user1:location" '{ "lat": 4.7453, "lng": -31.332 }' --type json;
+expressjs-redis-cache-v1 add "user1:location" '{ "lat": 4.7453, "lng": -31.332 }' --type json;
 
 # Cache a text that will expire in one hour
-expressjs-redis-cache add "offer" "everything 25% off for the next hour" $(( 60 * 60 ));
+expressjs-redis-cache-v1 add "offer" "everything 25% off for the next hour" $(( 60 * 60 ));
 ```
 
 ## Get single cache entry
 
 ```bash
-expressjs-redis-cache get $name
-# Example: expressjs-redis-cache get user1:*
+expressjs-redis-cache-v1 get $name
+# Example: expressjs-redis-cache-v1 get user1:*
 # Output:
 ```
 
 ## Delete cache entry
 
 ```bash
-expressjs-redis-cache del $name
-# Example: expressjs-redis-cache del user1:*
+expressjs-redis-cache-v1 del $name
+# Example: expressjs-redis-cache-v1 del user1:*
 # Output:
 ```
 
 ## Get total cache size
 
 ```bash
-expressjs-redis-cache size
+expressjs-redis-cache-v1 size
 # Output:
 ```
 # Example Code
