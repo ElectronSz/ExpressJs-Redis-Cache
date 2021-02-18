@@ -1,6 +1,6 @@
 {
-  "name": "expressjs-redis-cache",
-  "version": "1.1.3",
+  "name": "expressjs-redis-cache-v1",
+  "version": "1.0.0",
   "description": "A module to make Express interact with Redis (create, get, delete). You can automatically cache all your most popular routes in Redis.",
   "main": "index.js",
   "bin": {
@@ -15,10 +15,14 @@
   },
   
   "author": {
-    "name": "Francois Vespa",
-    "url": "https://github.com/co2-git"
+    "name": "ElectronSz",
+    "url": "https://github.com/ElectronSz"
   },
   "contributors": [
+    {
+      "name": "Francois Vespa",
+      "url": "https://github.com/co2-git"
+    },
     {
       "name": "ElectronSz",
       "url": "https://github.com/ElectronSz"
